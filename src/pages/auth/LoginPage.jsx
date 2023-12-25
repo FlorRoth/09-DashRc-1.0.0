@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext } from "react"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -9,12 +9,19 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import { AuthContexts } from '../../contexts/AuthContexts';
+import useForm from '../../hooks/useForm';
 
 
 export const LoginPage = () => {
 
-    const handleSubmit = (event) => {
+  const { login, state } = useContext(AuthContexts);
+
+    const {formState,onChangeInput} = useForm();
+
+    const handleSubmitLogin = (event) => {
         event.preventDefault();
+        login(formState.email);
         
     };
 
@@ -28,7 +35,7 @@ export const LoginPage = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmitLogin} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -38,6 +45,7 @@ export const LoginPage = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={onChangeInput}
             />
             <TextField
               margin="normal"
@@ -48,6 +56,7 @@ export const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={onChangeInput}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
