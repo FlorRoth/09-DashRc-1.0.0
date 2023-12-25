@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FooterLayout } from '../components/ui/FooterLayout';
 import RegisterPage from '../pages/auth/RegisterPage';
+import { LoginPage } from '../pages/auth/LoginPage';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -27,8 +28,8 @@ export default function AuthLayout() {
           }}
         >
 
-          {/* <LoginPage /> */}
-          <RegisterPage />
+          <LoginPage/>
+          {/* <RegisterPage /> */}
           
         </Box>
         <FooterLayout sx={{ mt: 8, mb: 4 }} />
