@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FooterLayout } from '../components/ui/FooterLayout';
 import RegisterPage from '../pages/auth/RegisterPage';
 import { LoginPage } from '../pages/auth/LoginPage';
+import { Route, Routes } from 'react-router';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -28,9 +29,15 @@ export default function AuthLayout() {
           }}
         >
 
-          <LoginPage/>
-          {/* <RegisterPage /> */}
-          
+          <Routes>
+            <Route path='/login' element={
+              <LoginPage/>
+            } />
+            <Route path='/register' element={
+              <RegisterPage />
+            } />
+          </Routes>
+
         </Box>
         <FooterLayout sx={{ mt: 8, mb: 4 }} />
       </Container>
