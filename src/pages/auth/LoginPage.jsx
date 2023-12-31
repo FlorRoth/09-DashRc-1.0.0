@@ -21,10 +21,9 @@ export const LoginPage = () => {
 
     const handleSubmitLogin = (event) => {
         event.preventDefault();
-        login(formState.email);
-        
+        login(formState.email,formState.password);
     };
-
+    
 
   return (
     
