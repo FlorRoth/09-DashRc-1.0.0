@@ -8,6 +8,7 @@ const initialValues = {
     isLogged: false,
     token: '',
     message: ''
+    
 }
 export const AuthPovider = ({children}) => {
 
@@ -31,18 +32,29 @@ const login = (email) => {
 
 }
 
-// const logout = () => {
+const logout = () => {
 
-//         dispatch({
-//            type: 'LOGOUT',
-//            payload: {
-//            message: "Usuario deslogeado con exito"
-//            }
-//        })
-// }
+        dispatch({
+           type: 'LOGOUT',
+           payload: {
+           message: "Usuario deslogeado con exito"
+           }
+       })
+}
+
+
+const recoveryPassword = (newPassword) => {
+
+    dispatch({
+       type: 'RECOVERY',
+       payload: {
+       newPassword: newPassword
+       }
+   })
+}
 
 return (
-    <AuthContexts.Provider value={{state,login}}>
+    <AuthContexts.Provider value={{state,login,logout,recoveryPassword}}>
         {children}
     </AuthContexts.Provider>
   )
