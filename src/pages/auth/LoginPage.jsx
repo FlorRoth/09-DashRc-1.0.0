@@ -9,19 +9,20 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { AuthContexts } from '../../contexts/AuthContexts';
 import useForm from '../../hooks/useForm';
+import { useDispatch } from "react-redux";
+import { getLogin } from "../../store/slices/auth/thunks";
 
 
 export const LoginPage = () => {
 
-  const { login, state } = useContext(AuthContexts);
-
+  const dispatch =  useDispatch();
     const {formState,onChangeInput} = useForm();
 
     const handleSubmitLogin = (event) => {
         event.preventDefault();
-        login(formState.email,formState.password);
+        
+        dispatch(getLogin(formState.email,formState.password))
     };
     
 
