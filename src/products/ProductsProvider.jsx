@@ -4,9 +4,15 @@ import { axiosDash } from '../config/dashAxios';
 import { ProductsReducer } from '../reducers/ProductsReducer';
 import { ProductContexts } from '../contexts/ProductContexts';
 
+
+const initialValues = {
+    products: {}
+    
+}
+
 export const ProductsProvider = ({children}) => {
 
-const [state, dispatch] = useReducer(ProductsReducer);
+const [state, dispatch] = useReducer(ProductsReducer,initialValues);
 
 const getAllProducts = async () => {
 

@@ -26,7 +26,6 @@ export function GeneralLayout() {
     
     useEffect(() => {
       getAllProducts();
-      
     }, [])
 
 
