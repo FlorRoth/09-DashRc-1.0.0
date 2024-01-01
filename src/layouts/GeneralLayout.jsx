@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import React, { useContext, useEffect, useState } from 'react'
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -10,6 +11,7 @@ import { FooterLayout, SideBar } from '../components/ui';
 import { NavBar } from '../components/ui';
 import { ProductsPage } from '../pages/products/ProductsPage';
 import { Route, Routes } from 'react-router';
+import { ProductContexts } from '../contexts/ProductContexts';
 
 
 const defaultTheme = createTheme();
@@ -17,7 +19,15 @@ const defaultTheme = createTheme();
 export function GeneralLayout() {
     
        
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
+
+    const {state, getAllProducts } = useContext(ProductContexts);
+
+    
+    useEffect(() => {
+      getAllProducts();
+      
+    }, [])
 
 
     const toggleDrawer = () => {
@@ -54,7 +64,7 @@ export function GeneralLayout() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Routes>
               <Route path={'/products'} element={
-                <ProductsPage/>
+                <ProductsPage products={state.products}/>
               } />
             </Routes>
 
