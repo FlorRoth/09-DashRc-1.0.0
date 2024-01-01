@@ -22,7 +22,7 @@ const login = async (username,pass) => {
     password: pass});
     
 
-    dispatch({
+    const objectStorage = {
         type: 'LOGIN',
         payload: {
         user: { 
@@ -36,7 +36,44 @@ const login = async (username,pass) => {
         token: data.token,
         message: "Usuario Logeado con exito"
         }
-    })
+    }
+
+    localStorage.setItem('token',JSON.stringify(objectStorage));
+
+    dispatch(objectStorage);
+
+}
+const checkToken = async () => {
+    const token = localStorage.getItem('token');
+    const dataToken = JSON.parse(token);
+    
+    if(!token){
+        dispatch({
+            type: 'LOGOUT',
+            payload: {
+            message: "Usuario deslogeado con exito"
+            }
+        })
+        return;
+    }
+    dispatch(  
+        {
+            type: 'LOGIN',
+            payload: {
+            user: { 
+                id: dataToken.id, 
+                username: dataToken.username,
+                email: dataToken.email,
+                firstName: dataToken.firstName,
+                lastName: dataToken.lastName
+            },
+            isLogged: true,
+            token: dataToken.token,
+            message: "Usuario Logeado con exito"
+            }
+        }
+ 
+    );
 
 }
 
@@ -62,7 +99,7 @@ const recoveryPassword = (newPassword) => {
 }
 
 return (
-    <AuthContexts.Provider value={{state,login,logout,recoveryPassword}}>
+    <AuthContexts.Provider value={{state,login,logout,recoveryPassword,checkToken}}>
         {children}
     </AuthContexts.Provider>
   )

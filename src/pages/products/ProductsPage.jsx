@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import { Avatar, Box, Grid, IconButton, Paper, Typography } from '@mui/material';
 
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Chip } from '@mui/material';
+import { axiosDash } from '../../config/dashAxios';
+import { ProductContexts } from '../../contexts/ProductContexts';
 
 
 
 
-export const ProductsPage = () => {
+
+export const ProductsPage = ({products}) => {
 
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
 
-
+  
 
   const getButtonsActions = () => {
 
@@ -142,7 +145,7 @@ export const ProductsPage = () => {
               loading={false}
               // autoHeight
               // checkboxSelection
-              rows={[]} 
+              rows={products} 
               columns={columns} 
               paginationMode='client'
               pageSize={pageSize}

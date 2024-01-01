@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useReducer } from "react"
 import AuthLayout from "../layouts/AuthLayout"
 import { GeneralLayout } from "../layouts/GeneralLayout"
@@ -9,10 +9,15 @@ import { PublicRoutes } from './PublicRoutes';
 
 
 export const AppRoutes = () => {
-  const {state}  = useContext(AuthContexts);
+  const {state, checkToken}  = useContext(AuthContexts);
   const isLogged = state.isLogged ? state.isLogged : false;
 
+  useEffect(() => {
+    checkToken();
+  }, [])
   
+  
+
   return (
     <>
 
