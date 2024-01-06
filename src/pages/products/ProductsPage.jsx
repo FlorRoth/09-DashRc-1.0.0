@@ -5,8 +5,7 @@ import { Avatar, Box, Grid, IconButton, Paper, Typography } from '@mui/material'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Chip } from '@mui/material';
-import { axiosDash } from '../../config/dashAxios';
-import { ProductContexts } from '../../contexts/ProductContexts';
+
 
 
 

@@ -11,7 +11,9 @@ import { FooterLayout, SideBar } from '../components/ui';
 import { NavBar } from '../components/ui';
 import { ProductsPage } from '../pages/products/ProductsPage';
 import { Route, Routes } from 'react-router';
-import { ProductContexts } from '../contexts/ProductContexts';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../store/slices/products/thunks';
+
 
 
 const defaultTheme = createTheme();
@@ -21,13 +23,13 @@ export function GeneralLayout() {
        
     const [open, setOpen] = useState(true);
 
-    const {state, getAllProducts } = useContext(ProductContexts);
+    const dispatch =  useDispatch();
+    const { products } = useSelector((state) => state.products)
 
     
     useEffect(() => {
-      getAllProducts();
+      dispatch(getProducts())
     }, [])
-
 
     const toggleDrawer = () => {
         setOpen(!open);
@@ -63,7 +65,7 @@ export function GeneralLayout() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Routes>
               <Route path={'/products'} element={
-                <ProductsPage products={state.products}/>
+                <ProductsPage products={products}/>
               } />
             </Routes>
 
